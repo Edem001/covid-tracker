@@ -1,9 +1,13 @@
 package com.example.retrofit_practice
 
+import android.app.Application
+import android.content.Context
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.retrofit_practice.di.AppComponent
+import com.example.retrofit_practice.di.DaggerAppComponent
 import com.example.retrofit_practice.util.Status
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.gson.GsonBuilder
@@ -14,6 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,5 +33,11 @@ class MainActivity : AppCompatActivity() {
 //            val cases = service.casesByWorld()
 //            Log.d("App", "${cases}")
 //        }
+    }
+}
+
+class MyApplication : Application(){
+    val appComponent:AppComponent by lazy {
+        DaggerAppComponent.factory().create(applicationContext)
     }
 }

@@ -1,8 +1,26 @@
 package com.example.retrofit_practice.di
 
+import android.app.Activity
+import android.content.Context
+import android.content.SharedPreferences
+import com.example.retrofit_practice.MainActivity
 import com.example.retrofit_practice.di.modules.NetworkModule
+import com.example.retrofit_practice.di.modules.StorageModule
+import com.example.retrofit_practice.fragments.SummaryFragment
+import com.example.retrofit_practice.util.PreferencesWorker
+import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Singleton
 
-@Component(modules = [NetworkModule::class])
+@Singleton
+@Component(modules = [NetworkModule::class, StorageModule::class])
 interface AppComponent {
+
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance context: Context): AppComponent
+    }
+
+    fun inject(activity: MainActivity)
+    fun inject(fragment: SummaryFragment)
 }
