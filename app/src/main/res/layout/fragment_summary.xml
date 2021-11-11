@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_globe"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/ic_globe_icon" />
+
+    <TextView
+        android:id="@+id/tv_cases"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_globe"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:background="@drawable/redbackground"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="Infected:"/>
+
+    <TextView
+        android:id="@+id/tv_deaths"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_cases"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:background="@drawable/blackbackground"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="Deaths:"/>
+
+</RelativeLayout>
