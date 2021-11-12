@@ -1,6 +1,6 @@
 package com.example.retrofit_practice.network.entity.cases
 
-data class CasesByCountry(
+data class CasesPerCountry(
     val continent: String?,
     val country: String?,
     val iso: Int?,

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.retrofit_practice.R
 
-class SearchFragment : Fragment() {
+class CasesPerCountryFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +17,10 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
+        val navigationBar = view.findViewById<View>(R.id.bottom_sheet)
+
+        //navigationBar.visibility = View.INVISIBLE
+        return view
     }
 }
