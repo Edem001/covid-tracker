@@ -13,6 +13,7 @@ import com.example.retrofit_practice.MyApplication
 import com.example.retrofit_practice.R
 import com.example.retrofit_practice.util.PreferencesWorker
 import com.example.retrofit_practice.vm.SummaryViewModel
+import java.text.NumberFormat
 import javax.inject.Inject
 
 class SummaryFragment : Fragment() {
@@ -37,8 +38,8 @@ class SummaryFragment : Fragment() {
         val tvInfected = view.findViewById<TextView>(R.id.tv_cases)
         val tvDeaths = view.findViewById<TextView>(R.id.tv_deaths)
 
-        val updateInfected = Observer<Long>{ tvInfected.text = "Infected: $it" }
-        val updateDeaths = Observer<Long> { tvDeaths.text = "Deaths: $it" }
+        val updateInfected = Observer<Long>{ tvInfected.text = "Infected: ${NumberFormat.getIntegerInstance().format(it)}" }
+        val updateDeaths = Observer<Long> { tvDeaths.text = "Deaths: ${NumberFormat.getIntegerInstance().format(it)}" }
 
         summaryViewModel.infected.observe(viewLifecycleOwner, updateInfected)
         summaryViewModel.deaths.observe(viewLifecycleOwner, updateDeaths)

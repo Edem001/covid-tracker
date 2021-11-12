@@ -3,10 +3,12 @@
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorAccent"
-    android:orientation="horizontal">
+    android:background="@drawable/background_primary_toprounded"
+    android:orientation="horizontal"
+    android:elevation="10dp">
 
     <RelativeLayout
+        android:id="@+id/relative_cases"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="20dp"
@@ -18,7 +20,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_centerHorizontal="true"
-            app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
+            app:srcCompat="@drawable/ic_search" />
 
         <TextView
             android:layout_width="match_parent"
@@ -29,6 +31,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relative_history"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="20dp"
@@ -40,7 +43,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@android:drawable/ic_menu_recent_history" />
+            app:srcCompat="@drawable/ic_history" />
 
         <TextView
             android:layout_width="match_parent"
@@ -51,6 +54,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relative_vaccinated"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="20dp"
@@ -62,7 +66,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@android:drawable/ic_lock_idle_low_battery" />
+            app:srcCompat="@drawable/ic_vaccine" />
 
         <TextView
             android:layout_width="match_parent"

@@ -3,12 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/eatamuratov/AndroidStudioProjects/RetroFitpractice/app/src/main/res/drawable/background_primary_toprounded.xml" value="0.2140625" />
         <entry key="..\:/Users/eatamuratov/AndroidStudioProjects/RetroFitpractice/app/src/main/res/drawable/blackbackground.xml" value="0.3828125" />
         <entry key="..\:/Users/eatamuratov/AndroidStudioProjects/RetroFitpractice/app/src/main/res/drawable/ic_globe_icon.xml" value="0.3828125" />
+        <entry key="..\:/Users/eatamuratov/AndroidStudioProjects/RetroFitpractice/app/src/main/res/drawable/ic_history.xml" value="0.2140625" />
+        <entry key="..\:/Users/eatamuratov/AndroidStudioProjects/RetroFitpractice/app/src/main/res/drawable/ic_search.xml" value="0.2140625" />
+        <entry key="..\:/Users/eatamuratov/AndroidStudioProjects/RetroFitpractice/app/src/main/res/drawable/ic_vaccine.xml" value="0.21770833333333334" />
         <entry key="..\:/Users/eatamuratov/AndroidStudioProjects/RetroFitpractice/app/src/main/res/drawable/redbackground.xml" value="0.3828125" />
         <entry key="..\:/Users/eatamuratov/AndroidStudioProjects/RetroFitpractice/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/eatamuratov/AndroidStudioProjects/RetroFitpractice/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/eatamuratov/AndroidStudioProjects/RetroFitpractice/app/src/main/res/layout/fragment_summary.xml" value="0.22" />
+        <entry key="..\:/Users/eatamuratov/AndroidStudioProjects/RetroFitpractice/app/src/main/res/layout/fragment_summary.xml" value="0.5" />
+        <entry key="..\:/Users/eatamuratov/AndroidStudioProjects/RetroFitpractice/app/src/main/res/layout/fragment_vaccinated.xml" value="0.18385416666666668" />
       </map>
     </option>
   </component>
