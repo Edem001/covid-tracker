@@ -42,7 +42,10 @@ class CasesPerCountryFragment : Fragment() {
         val scrollTv = view.findViewById<TextView>(R.id.search_tv)
 
         val observer = Observer<Map<String, CasesPerCountry>> {
-            scrollTv.text = it["All"]?.formString()
+            val keys = it.keys
+            it.keys.forEach { key ->
+                scrollTv.text = "${scrollTv.text}${key}\n${it[key]?.formString()}\n\n"
+            }
         }
 
         viewModel.info.observe(viewLifecycleOwner, observer)
