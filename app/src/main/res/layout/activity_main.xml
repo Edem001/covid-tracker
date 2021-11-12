@@ -7,6 +7,7 @@
     tools:context=".MainActivity"
     android:id="@+id/main_activity_root">
 
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/summary_fragment_container"
         android:name="com.example.retrofit_practice.fragments.SummaryFragment"
@@ -14,15 +15,13 @@
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_summary"/>
-
+        tools:layout="@layout/fragment_summary" />
 
     <include
         layout="@layout/fragment_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp"
-        android:elevation="10dp"/>
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

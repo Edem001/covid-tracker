@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import javax.inject.Inject
 
-class PreferencesWorker (var storage: SharedPreferences, context: Context) {
+class PreferencesWorker @Inject constructor(var storage: SharedPreferences) {
 
     fun getInfected() = storage.getLong("Infected", 0)
     fun getDeaths() = storage.getLong("Deaths", 0)

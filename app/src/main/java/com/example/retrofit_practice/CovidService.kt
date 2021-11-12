@@ -1,6 +1,6 @@
 package com.example.retrofit_practice
 
-import com.example.retrofit_practice.network.entity.cases.CasesByCountry
+import com.example.retrofit_practice.network.entity.cases.CasesPerCountry
 import com.example.retrofit_practice.network.entity.history.HistoryByCountry
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -17,7 +17,7 @@ interface CovidService{
     suspend fun casesByCountry(
         @Query("country") country: String? = "Ukraine",
         @Query("ab") abbreviation: String? = null,
-    ): Map<String, CasesByCountry>
+    ): Map<String, CasesPerCountry>
 
     /**
      * Gets cases across the world.
@@ -27,7 +27,7 @@ interface CovidService{
     @GET("cases")
     suspend fun casesByWorld(
         @Query("continent") continent: String? = null
-    ): Map<String, Map<String, CasesByCountry>>
+    ): Map<String, Map<String, CasesPerCountry>>
 
     /**
      * Status is required, represents 2 states: Confirmed, Deaths
