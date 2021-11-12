@@ -7,13 +7,13 @@ data class CasesByCountry(
     val capital_city: String?,
     val life_expectancy: Float?,
     val abbreviation: String?,
-    val confirmed: Int?,
+    val confirmed: Long?,
     val long: String?,
     val population: Long?,
     val sq_km_area: Double?,
     val elevation_in_meters: String?,
     val location: String?,
     val updated: String?,
-    val deaths: Int?,
+    val deaths: Long?,
     val lat: String?
 )

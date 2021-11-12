@@ -10,10 +10,12 @@ import com.example.retrofit_practice.fragments.SummaryFragment
 import com.example.retrofit_practice.util.PreferencesWorker
 import dagger.BindsInstance
 import dagger.Component
+import dagger.Module
+import dagger.Provides
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class, StorageModule::class])
+@Component(modules = [NetworkModule::class, StorageModule::class, Test::class])
 interface AppComponent {
 
     @Component.Factory
@@ -23,4 +25,13 @@ interface AppComponent {
 
     fun inject(activity: MainActivity)
     fun inject(fragment: SummaryFragment)
+
+    var content: String
+}
+
+@Module
+class Test {
+
+    @Provides
+    fun test(): String = "test"
 }

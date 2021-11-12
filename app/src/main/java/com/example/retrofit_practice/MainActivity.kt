@@ -23,16 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val service = Retrofit.Builder()
-            .baseUrl("https://covid-api.mmediagroup.fr/v1/")
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            .build()
-            .create(CovidService::class.java)
-//
-//        CoroutineScope(IO).launch {
-//            val cases = service.casesByWorld()
-//            Log.d("App", "${cases}")
-//        }
+        (application as MyApplication).appComponent.inject(this)
     }
 }
 

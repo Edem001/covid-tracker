@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NetworkModule {
 
     @Provides
-    fun provideRetrofitClient() =
+    fun provideRetrofitClient(): CovidService =
         Retrofit.Builder()
             .baseUrl("https://covid-api.mmediagroup.fr/v1/")
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
