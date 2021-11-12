@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.retrofit_practice.MainActivity
 import com.example.retrofit_practice.R
 
 class CasesPerCountryFragment : Fragment() {
@@ -18,9 +19,13 @@ class CasesPerCountryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
-        val navigationBar = view.findViewById<View>(R.id.bottom_sheet)
+        (activity as MainActivity).hideNavigation()
 
-        //navigationBar.visibility = View.INVISIBLE
         return view
+    }
+
+    override fun onDestroy() {
+        (activity as MainActivity).displayNavigation()
+        super.onDestroy()
     }
 }

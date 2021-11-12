@@ -105,6 +105,18 @@ class MainActivity : AppCompatActivity() {
             it.setOnClickListener(onClick)
         }
     }
+
+    fun hideNavigation(){
+        findViewById<View>(R.id.bottom_sheet).apply {
+            visibility = View.INVISIBLE
+        }
+    }
+
+    fun displayNavigation(){
+        findViewById<View>(R.id.bottom_sheet).apply {
+            visibility = View.VISIBLE
+        }
+    }
 }
 
 class MyApplication : Application() {
