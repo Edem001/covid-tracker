@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import com.example.retrofit_practice.MainActivity
 import com.example.retrofit_practice.di.modules.NetworkModule
 import com.example.retrofit_practice.di.modules.StorageModule
+import com.example.retrofit_practice.fragments.CasesPerCountryFragment
 import com.example.retrofit_practice.fragments.SummaryFragment
 import com.example.retrofit_practice.util.PreferencesWorker
 import dagger.BindsInstance
@@ -25,6 +26,7 @@ interface AppComponent {
 
     fun inject(activity: MainActivity)
     fun inject(fragment: SummaryFragment)
+    fun inject(fragment: CasesPerCountryFragment)
 
     var content: String
 }
