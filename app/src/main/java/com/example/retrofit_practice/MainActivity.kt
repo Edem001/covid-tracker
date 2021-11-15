@@ -5,24 +5,38 @@ import android.app.Application
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.InputType
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.setPadding
+import androidx.core.view.doOnDetach
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.commit
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.retrofit_practice.adapters.CountryDialogAdapter
 import com.example.retrofit_practice.di.AppComponent
 import com.example.retrofit_practice.di.DaggerAppComponent
 import com.example.retrofit_practice.fragments.CasesPerCountryFragment
 import com.example.retrofit_practice.fragments.HistoryPerCountryFragment
 import com.example.retrofit_practice.fragments.VaccinatedFragment
+import com.example.retrofit_practice.vm.MainActivityViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Named
 
 class MainActivity : AppCompatActivity() {
+
+    private final val EDITTEXT_CHANGE_DELAY = 300L
+
+
+    @Inject
+    @Named("countryList")
+    lateinit var countryList: ArrayList<Int>
+
+    @Inject
+    lateinit var mainViewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,22 +49,32 @@ class MainActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Select country")
 
-            val input = EditText(this)
-            input.inputType = InputType.TYPE_CLASS_TEXT
-            input.width = ViewGroup.LayoutParams.MATCH_PARENT
+            val dialogLayout = layoutInflater.inflate(R.layout.dialog_countries, null, false)
+            val input = dialogLayout.findViewById<EditText>(R.id.country_et)
+            builder.setView(dialogLayout)
+            dialogLayout.doOnDetach { mainViewModel.SearchQuery.postValue("") }
 
-            val paddingHorizontal = (20 * resources.displayMetrics.density + 0.5).toInt()
-            val paddingVertical = (5 * resources.displayMetrics.density + 0.5).toInt()
-            input.setPadding(paddingHorizontal)
+            val recyclerView = dialogLayout.findViewById<RecyclerView>(R.id.dialog_rv)
+            val countryAdapter = CountryDialogAdapter(countryList, resources, applicationContext)
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            recyclerView.adapter = countryAdapter
 
-            builder.setView(input)
+
+            input.addTextChangedListener(afterTextChanged = {
+                mainViewModel.SearchQuery.postValue(it.toString())
+            })
+
+            mainViewModel.SearchQuery.observe(this) {
+                countryAdapter.filter(it)
+            }
+
 
             builder.setPositiveButton("Confirm", DialogInterface.OnClickListener { _, _ ->
                 if (!input.text.toString().isEmpty()) {
                     val fragmentManager = supportFragmentManager
 
                     val bundle = Bundle().apply {
-                        putString("country", input.text.toString())
+                        putString("country", input.text.toString().trim())
                     }
 
                     when (it.id) {
@@ -106,13 +130,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun hideNavigation(){
+    fun hideNavigation() {
         findViewById<View>(R.id.bottom_sheet).apply {
             visibility = View.INVISIBLE
         }
     }
 
-    fun displayNavigation(){
+    fun displayNavigation() {
         findViewById<View>(R.id.bottom_sheet).apply {
             visibility = View.VISIBLE
         }

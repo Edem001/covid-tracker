@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/country_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_margin="20dp"
+        android:layout_alignParentTop="true" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dialog_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/country_et"
+        android:layout_alignParentStart="true"
+        android:paddingHorizontal="20dp" />
+</RelativeLayout>

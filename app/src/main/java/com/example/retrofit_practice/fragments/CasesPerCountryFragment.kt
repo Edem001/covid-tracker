@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofit_practice.CovidService
 import com.example.retrofit_practice.MainActivity
 import com.example.retrofit_practice.MyApplication
 import com.example.retrofit_practice.R
+import com.example.retrofit_practice.adapters.SearchResultsAdapter
 import com.example.retrofit_practice.di.DaggerAppComponent
 import com.example.retrofit_practice.network.entity.cases.CasesPerCountry
 import com.example.retrofit_practice.vm.CasesPerCountryViewModel
@@ -39,13 +42,12 @@ class CasesPerCountryFragment : Fragment() {
         val countryName = arguments?.getString("country") ?: "Ukraine"
 
         val countryTv = view.findViewById<TextView>(R.id.search_tv_country).apply { text = countryName }
-        val scrollTv = view.findViewById<TextView>(R.id.search_tv)
 
         val observer = Observer<Map<String, CasesPerCountry>> {
-            val keys = it.keys
-            it.keys.forEach { key ->
-                scrollTv.text = "${scrollTv.text}${key}\n${it[key]?.formString()}\n\n"
-            }
+            val scrollRecycler = view.findViewById<RecyclerView>(R.id.search_rv)
+            val searchAdapter = SearchResultsAdapter(requireContext(), it)
+            scrollRecycler.layoutManager = LinearLayoutManager(requireContext())
+            scrollRecycler.adapter = searchAdapter
         }
 
         viewModel.info.observe(viewLifecycleOwner, observer)
