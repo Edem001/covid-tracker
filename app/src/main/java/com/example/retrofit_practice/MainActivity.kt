@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.core.view.doOnDetach
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.commit
@@ -53,21 +54,6 @@ class MainActivity : AppCompatActivity() {
             val input = dialogLayout.findViewById<EditText>(R.id.country_et)
             builder.setView(dialogLayout)
             dialogLayout.doOnDetach { mainViewModel.SearchQuery.postValue("") }
-
-            val recyclerView = dialogLayout.findViewById<RecyclerView>(R.id.dialog_rv)
-            val countryAdapter = CountryDialogAdapter(countryList, resources, applicationContext)
-            recyclerView.layoutManager = LinearLayoutManager(this)
-            recyclerView.adapter = countryAdapter
-
-
-            input.addTextChangedListener(afterTextChanged = {
-                mainViewModel.SearchQuery.postValue(it.toString())
-            })
-
-            mainViewModel.SearchQuery.observe(this) {
-                countryAdapter.filter(it)
-            }
-
 
             builder.setPositiveButton("Confirm", DialogInterface.OnClickListener { _, _ ->
                 if (!input.text.toString().isEmpty()) {
@@ -118,6 +104,27 @@ class MainActivity : AppCompatActivity() {
 
             val dialog = builder.create()
             dialog.show()
+
+            val recyclerView = dialogLayout.findViewById<RecyclerView>(R.id.dialog_rv)
+            val countryAdapter = CountryDialogAdapter(countryList, resources, applicationContext, object: CountryDialogAdapter.CountryClickListener{
+                override fun onCountryClick(selectedCountry: String) {
+                    input.text.clear()
+                    input.text.insert(0, selectedCountry)
+                    dialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick()
+                }
+            })
+
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            recyclerView.adapter = countryAdapter
+
+
+            input.addTextChangedListener(afterTextChanged = {
+                mainViewModel.SearchQuery.postValue(it.toString())
+            })
+
+            mainViewModel.SearchQuery.observe(this) {
+                countryAdapter.filter(it)
+            }
 
         }
 
