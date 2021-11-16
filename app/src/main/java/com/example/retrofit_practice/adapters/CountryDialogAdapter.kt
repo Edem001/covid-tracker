@@ -52,7 +52,7 @@ class CountryDialogAdapter(
             countries = allCountries
         } else
             countries = allCountries.filter {
-                resources.getString(it).contains(query)
+                resources.getString(it).contains(query, true)
             }
         notifyDataSetChanged()
     }

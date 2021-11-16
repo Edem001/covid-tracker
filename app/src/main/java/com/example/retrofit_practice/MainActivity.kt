@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -65,54 +66,83 @@ class MainActivity : AppCompatActivity() {
 
                     when (it.id) {
                         R.id.relative_cases -> {
-                            fragmentManager.commit {
-                                replace(
-                                    R.id.summary_fragment_container,
-                                    CasesPerCountryFragment::class.java,
-                                    bundle,
-                                    "cases"
-                                )
-                                addToBackStack("main")
-                            }
+                            it.postDelayed(
+                                {
+                                    fragmentManager.commit {
+                                        setCustomAnimations(
+                                            R.anim.fade_in,
+                                            R.anim.fade_out,
+                                            R.anim.fade_in,
+                                            R.anim.fade_out
+                                        )
+                                        replace(
+                                            R.id.summary_fragment_container,
+                                            CasesPerCountryFragment::class.java,
+                                            bundle,
+                                            "cases"
+                                        )
+                                        addToBackStack("main")
+                                    }
+                                },
+                                resources.getInteger(android.R.integer.config_shortAnimTime)
+                                    .toLong()
+                            )
 
                         }
                         R.id.relative_history -> {
-                            fragmentManager.commit {
-                                replace(
-                                    R.id.summary_fragment_container,
-                                    HistoryPerCountryFragment::class.java,
-                                    bundle,
-                                    "history"
-                                )
-                                addToBackStack("main")
-                            }
+                            it.postDelayed(
+                                {
+                                    fragmentManager.commit {
+                                        replace(
+                                            R.id.summary_fragment_container,
+                                            HistoryPerCountryFragment::class.java,
+                                            bundle,
+                                            "history"
+                                        )
+                                        addToBackStack("main")
+                                    }
+                                },
+                                resources.getInteger(android.R.integer.config_shortAnimTime)
+                                    .toLong()
+                            )
                         }
                         R.id.relative_vaccinated -> {
-                            fragmentManager.commit {
-                                replace(
-                                    R.id.summary_fragment_container,
-                                    VaccinatedFragment::class.java,
-                                    bundle,
-                                    "vaccinated"
-                                )
-                                addToBackStack("main")
-                            }
+                            it.postDelayed(
+                                {
+                                    fragmentManager.commit {
+                                        replace(
+                                            R.id.summary_fragment_container,
+                                            VaccinatedFragment::class.java,
+                                            bundle,
+                                            "vaccinated"
+                                        )
+                                        addToBackStack("main")
+                                    }
+                                },
+                                resources.getInteger(android.R.integer.config_shortAnimTime)
+                                    .toLong()
+                            )
                         }
                     }
                 }
             })
 
             val dialog = builder.create()
+            dialog.window?.attributes?.windowAnimations = R.style.DialogTheme
             dialog.show()
 
             val recyclerView = dialogLayout.findViewById<RecyclerView>(R.id.dialog_rv)
-            val countryAdapter = CountryDialogAdapter(countryList, resources, applicationContext, object: CountryDialogAdapter.CountryClickListener{
-                override fun onCountryClick(selectedCountry: String) {
-                    input.text.clear()
-                    input.text.insert(0, selectedCountry)
-                    dialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick()
-                }
-            })
+            val countryAdapter = CountryDialogAdapter(
+                countryList,
+                resources,
+                applicationContext,
+                object : CountryDialogAdapter.CountryClickListener {
+                    override fun onCountryClick(selectedCountry: String) {
+                        input.text.clear()
+                        input.text.insert(0, selectedCountry)
+                        dialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick()
+                    }
+                })
 
             recyclerView.layoutManager = LinearLayoutManager(this)
             recyclerView.adapter = countryAdapter
@@ -139,12 +169,17 @@ class MainActivity : AppCompatActivity() {
 
     fun hideNavigation() {
         findViewById<View>(R.id.bottom_sheet).apply {
-            visibility = View.INVISIBLE
+            animation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.slide_top_down)
+            postDelayed(
+                { visibility = View.INVISIBLE },
+                resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
+            )
         }
     }
 
     fun displayNavigation() {
         findViewById<View>(R.id.bottom_sheet).apply {
+            animation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.slide_down_top)
             visibility = View.VISIBLE
         }
     }

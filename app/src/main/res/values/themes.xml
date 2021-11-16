@@ -15,4 +15,9 @@
         <item name="fontFamily">sans-serif</item>
         <item name="android:textColorPrimaryInverse">#FFF</item>
     </style>
+    
+    <style name="DialogTheme">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
 </resources>

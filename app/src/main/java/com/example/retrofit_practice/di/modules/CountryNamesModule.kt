@@ -138,7 +138,6 @@ class CountryNamesModule {
             Nicaragua,
             Niger,
             Nigeria,
-            NorthKorea,
             NorthMacedonia,
             Norway,
             Oman,
