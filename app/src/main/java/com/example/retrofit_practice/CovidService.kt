@@ -39,7 +39,7 @@ interface CovidService{
      * @param continent optional.
      */
     @GET("history")
-    suspend fun history(
+    suspend fun historyByCountry(
         @Query("status") status: String,
         @Query("country") country: String? = null,
         @Query("ab") abbreviation: String? = null,

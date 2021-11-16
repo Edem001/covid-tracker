@@ -7,18 +7,17 @@ import com.example.retrofit_practice.network.entity.cases.CasesPerCountry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
-class CasesPerCountryViewModel @Inject constructor(val client: CovidService): ViewModel() {
+class CasesPerCountryViewModel @Inject constructor(val client: CovidService): ViewModel(), RetrofitUpdatable {
 
-    val info = MutableLiveData<Map<String, CasesPerCountry>>()
+    val data = MutableLiveData<Map<String, CasesPerCountry>>()
     val busy = MutableLiveData(false)
 
-    fun updateData(country: String){
+    override fun updateData(countryName: String){
         CoroutineScope(Dispatchers.IO).launch {
             busy.postValue(true)
-            info.postValue(client.casesByCountry(country))
+            data.postValue(client.casesByCountry(countryName))
             busy.postValue(false)
         }
     }

@@ -54,7 +54,7 @@ class CasesPerCountryFragment : Fragment() {
                 progressBar.visibility = View.GONE
         }
 
-        viewModel.info.observe(viewLifecycleOwner, dataObserver)
+        viewModel.data.observe(viewLifecycleOwner, dataObserver)
         viewModel.busy.observe(viewLifecycleOwner, statusObserver)
         viewModel.updateData(countryName)
 
