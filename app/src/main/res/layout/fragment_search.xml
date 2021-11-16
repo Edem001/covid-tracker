@@ -9,26 +9,32 @@
         android:id="@+id/search_tv_country"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="26sp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/background_primary_rounded"
         android:layout_alignParentTop="true"
-        android:text="Country name"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="15dp"
+        android:backgroundTint="?colorPrimaryVariant"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/background_primary_rounded"
+        android:gravity="center"
+        android:text="Country name"
+        android:textColor="?android:textColorPrimaryInverse"
+        android:textSize="26sp" />
 
-    <ScrollView
-        android:id="@+id/search_scroll"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/search_tv_country"
-        android:layout_marginHorizontal="10dp">
+        android:layout_marginHorizontal="10dp"
+        android:scrollbars="vertical"
+        android:elevation="2dp"/>
 
-        <TextView
-            android:id="@+id/search_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"/>
-    </ScrollView>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
 </RelativeLayout>
