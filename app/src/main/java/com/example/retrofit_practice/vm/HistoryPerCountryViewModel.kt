@@ -8,8 +8,9 @@ import com.example.retrofit_practice.util.Status
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HistoryPerCountryViewModel(val client: CovidService) : ViewModel(), RetrofitUpdatable {
+class HistoryPerCountryViewModel @Inject constructor(val client: CovidService) : ViewModel(), RetrofitUpdatable {
 
     val confirmedData = MutableLiveData<Map<String, HistoryByCountry>>()
     val deathsData = MutableLiveData<Map<String, HistoryByCountry>>()

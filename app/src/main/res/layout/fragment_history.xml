@@ -20,14 +20,19 @@
         android:textColor="?android:textColorPrimaryInverse"
         android:textSize="26sp" />
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/history_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/history_tv_country"
+        android:layout_marginHorizontal="20dp"/>
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/history_view_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_below="@+id/history_tv_country">
-
-    </androidx.viewpager2.widget.ViewPager2>
+        android:layout_below="@+id/history_tab_layout"/>
 
     <ProgressBar
         android:layout_width="60dp"

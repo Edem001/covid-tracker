@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.retrofit_practice.MainActivity
 import com.example.retrofit_practice.di.modules.CountryNamesModule
+import com.example.retrofit_practice.di.modules.HistoryModule
 import com.example.retrofit_practice.di.modules.NetworkModule
 import com.example.retrofit_practice.di.modules.StorageModule
 import com.example.retrofit_practice.fragments.CasesPerCountryFragment
@@ -19,7 +20,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class, StorageModule::class, Test::class, CountryNamesModule::class])
+@Component(modules = [NetworkModule::class, StorageModule::class, Test::class, CountryNamesModule::class, HistoryModule::class])
 interface AppComponent {
 
     @Component.Factory

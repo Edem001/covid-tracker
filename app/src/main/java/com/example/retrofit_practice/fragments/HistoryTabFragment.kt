@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofit_practice.R
+import com.example.retrofit_practice.network.entity.history.HistoryByCountry
 import com.example.retrofit_practice.util.Status
 
 class HistoryTabFragment : Fragment() {
@@ -22,10 +24,15 @@ class HistoryTabFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_history_tab, container, false)
 
+        val recyclerView = view.findViewById<RecyclerView>(R.id.history_recycler_tab_rv)
         return view
     }
 
+    fun updateData(data: Map<String, HistoryByCountry>){
+
+    }
+
     companion object {
-        fun create(status: Status) = HistoryTabFragment().also { it.status = status }
+        fun create(status: Status, data: Map<String, HistoryByCountry>) = HistoryTabFragment().also { it.status = status }
     }
 }
