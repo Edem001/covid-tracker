@@ -27,10 +27,10 @@ data class CasesPerCountry(
         list.add("Capital city - $capital_city")
         list.add("Life expectancy - $life_expectancy")
         list.add("Abbreviation - $abbreviation")
-        list.add("Population - ${NumberFormat.getIntegerInstance().format(population)}")
+        list.add("Population - ${if (population == null) null else NumberFormat.getIntegerInstance().format(population)}")
         list.add("Location - $location")
-        list.add("Confirmed - ${NumberFormat.getIntegerInstance().format(confirmed)}")
-        list.add("Deaths - ${NumberFormat.getIntegerInstance().format(deaths)}")
+        list.add("Confirmed - ${if (confirmed == null) null else NumberFormat.getIntegerInstance().format(confirmed)}")
+        list.add("Deaths - ${if (deaths == null) null else NumberFormat.getIntegerInstance().format(deaths)}")
 
         return list.filterNot { it.contains(Regex(" null$")) }.joinToString(separator = System.lineSeparator())
     }

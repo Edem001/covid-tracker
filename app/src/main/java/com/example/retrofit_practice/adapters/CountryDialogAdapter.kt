@@ -44,16 +44,14 @@ class CountryDialogAdapter(
 
     override fun getItemCount() = countries.size
 
-    fun setTargetEditText(editText: EditText){ }
-
 
     fun filter(query: String) {
-        if (query.isEmpty()) {
+        if (query.trim().isEmpty()) {
             countries = allCountries
         } else
             countries = allCountries.filter {
-                resources.getString(it).contains(query, true)
-            }
+                resources.getString(it).contains(query.trim(), true)
+            }.ifEmpty { listOf(R.string.no_matching_countries) }
         notifyDataSetChanged()
     }
 }
