@@ -138,6 +138,7 @@ class MainActivity : AppCompatActivity() {
                 applicationContext,
                 object : CountryDialogAdapter.CountryClickListener {
                     override fun onCountryClick(selectedCountry: String) {
+                        if (selectedCountry == resources.getString(R.string.no_matching_countries)) return
                         input.text.clear()
                         input.text.insert(0, selectedCountry)
                         dialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick()

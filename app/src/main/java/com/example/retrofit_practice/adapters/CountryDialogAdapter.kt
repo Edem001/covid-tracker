@@ -53,7 +53,7 @@ class CountryDialogAdapter(
         } else
             countries = allCountries.filter {
                 resources.getString(it).contains(query, true)
-            }
+            }.ifEmpty { listOf(R.string.no_matching_countries) }
         notifyDataSetChanged()
     }
 }
