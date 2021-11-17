@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RetroFit-practice</string>
+    <string name="app_name">Covid tracker</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Country names -->
@@ -199,8 +199,8 @@
     <string name="Zimbabwe">Zimbabwe</string>
 
 
-<!--    Côte d'Ivoire-->
-<!--    Nauru-->
-<!--    Palestine State-->
+    <!--    Côte d'Ivoire-->
+    <!--    Nauru-->
+    <!--    Palestine State-->
 
 </resources>
