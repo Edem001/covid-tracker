@@ -1,7 +1,8 @@
-package com.example.retrofit_practice
+package com.example.retrofit_practice.network
 
-import com.example.retrofit_practice.network.entity.cases.CasesPerCountry
-import com.example.retrofit_practice.network.entity.history.HistoryByCountry
+import com.example.retrofit_practice.network.entity.CasesPerCountry
+import com.example.retrofit_practice.network.entity.HistoryPerCountry
+import com.example.retrofit_practice.network.entity.VaccinePerCountry
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -44,7 +45,7 @@ interface CovidService{
         @Query("country") country: String? = null,
         @Query("ab") abbreviation: String? = null,
         @Query("continent") continent: String? = null
-    ): Map<String, HistoryByCountry>
+    ): Map<String, HistoryPerCountry>
 
     /**
      * Gets vaccination info across the world.
@@ -54,9 +55,9 @@ interface CovidService{
      * @param continent optional.
      */
     @GET("vaccines")
-    suspend fun vaccines(
+    suspend fun vaccineByCountry(
         @Query("country") country: String? = null,
         @Query("ab") abbreviation: String? = null,
         @Query("continent") continent: String? = null
-    )
+    ): Map<String, VaccinePerCountry>
 }

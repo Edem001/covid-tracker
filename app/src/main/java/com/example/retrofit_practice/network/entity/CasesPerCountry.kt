@@ -1,4 +1,6 @@
-package com.example.retrofit_practice.network.entity.cases
+package com.example.retrofit_practice.network.entity
+
+import java.text.NumberFormat
 
 data class CasesPerCountry(
     val continent: String?,
@@ -25,12 +27,10 @@ data class CasesPerCountry(
         list.add("Capital city - $capital_city")
         list.add("Life expectancy - $life_expectancy")
         list.add("Abbreviation - $abbreviation")
-        list.add("Population - $population")
-        list.add("Area - $sq_km_area")
-        list.add("Elevation - $elevation_in_meters")
+        list.add("Population - ${NumberFormat.getIntegerInstance().format(population)}")
         list.add("Location - $location")
-        list.add("Confirmed - $confirmed")
-        list.add("Deaths - $deaths")
+        list.add("Confirmed - ${NumberFormat.getIntegerInstance().format(confirmed)}")
+        list.add("Deaths - ${NumberFormat.getIntegerInstance().format(deaths)}")
 
         return list.filterNot { it.contains(Regex(" null$")) }.joinToString(separator = System.lineSeparator())
     }

@@ -1,6 +1,6 @@
 package com.example.retrofit_practice.di.modules
 
-import com.example.retrofit_practice.CovidService
+import com.example.retrofit_practice.network.CovidService
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -17,7 +17,7 @@ class NetworkModule {
     @Provides
     fun provideRetrofitClient(): CovidService {
         val params = OkHttpClient.Builder()
-            .callTimeout(10, TimeUnit.SECONDS)
+            .callTimeout(15, TimeUnit.SECONDS)
             .connectTimeout(20, TimeUnit.SECONDS)
 
         return Retrofit.Builder()

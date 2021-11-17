@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofit_practice.R
-import com.example.retrofit_practice.network.entity.cases.CasesPerCountry
+import com.example.retrofit_practice.network.entity.CasesPerCountry
 
 class SearchResultsAdapter(context: Context, val data: Map<String, CasesPerCountry>) :
     RecyclerView.Adapter<SearchResultsAdapter.ViewHolder>() {

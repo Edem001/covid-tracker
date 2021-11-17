@@ -1,7 +1,6 @@
 package com.example.retrofit_practice.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofit_practice.MyApplication
 import com.example.retrofit_practice.R
 import com.example.retrofit_practice.adapters.HistoryTabRecyclerAdapter
-import com.example.retrofit_practice.network.entity.history.HistoryByCountry
+import com.example.retrofit_practice.network.entity.HistoryPerCountry
 import com.example.retrofit_practice.util.Status
 import com.example.retrofit_practice.vm.HistoryPerCountryViewModel
 import javax.inject.Inject
-import javax.inject.Named
 
 class HistoryTabFragment : Fragment() {
 
@@ -39,9 +37,10 @@ class HistoryTabFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_history_tab, container, false)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.history_recycler_tab_rv)
+            .apply { animation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in) }
         val progressBar = view.findViewById<ProgressBar>(R.id.history_progress_bar)
 
-        val dataObserver = Observer<Map<String, HistoryByCountry>> {
+        val dataObserver = Observer<Map<String, HistoryPerCountry>> {
             recyclerView.adapter = HistoryTabRecyclerAdapter(requireContext(), it)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
         }

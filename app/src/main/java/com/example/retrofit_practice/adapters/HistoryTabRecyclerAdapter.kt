@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofit_practice.R
-import com.example.retrofit_practice.network.entity.history.HistoryByCountry
+import com.example.retrofit_practice.network.entity.HistoryPerCountry
 
-class HistoryTabRecyclerAdapter(context: Context, val data: Map<String, HistoryByCountry>) :
+class HistoryTabRecyclerAdapter(context: Context, val data: Map<String, HistoryPerCountry>) :
     RecyclerView.Adapter<HistoryTabRecyclerAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val regionName = view.findViewById<TextView>(R.id.history_recycler_item_region_name)
