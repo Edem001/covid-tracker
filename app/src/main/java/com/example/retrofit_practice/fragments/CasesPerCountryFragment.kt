@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -14,7 +15,7 @@ import com.example.retrofit_practice.MainActivity
 import com.example.retrofit_practice.MyApplication
 import com.example.retrofit_practice.R
 import com.example.retrofit_practice.adapters.SearchResultsAdapter
-import com.example.retrofit_practice.network.entity.cases.CasesPerCountry
+import com.example.retrofit_practice.network.entity.CasesPerCountry
 import com.example.retrofit_practice.vm.CasesPerCountryViewModel
 import javax.inject.Inject
 
@@ -38,9 +39,10 @@ class CasesPerCountryFragment : Fragment() {
         val countryName = arguments?.getString("country") ?: "Ukraine"
 
         val countryTv = view.findViewById<TextView>(R.id.search_tv_country).apply { text = countryName }
+        val scrollRecycler = view.findViewById<RecyclerView>(R.id.search_rv)
+        scrollRecycler.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
 
         val dataObserver = Observer<Map<String, CasesPerCountry>> {
-            val scrollRecycler = view.findViewById<RecyclerView>(R.id.search_rv)
             val searchAdapter = SearchResultsAdapter(requireContext(), it)
             scrollRecycler.layoutManager = LinearLayoutManager(requireContext())
             scrollRecycler.adapter = searchAdapter
@@ -48,10 +50,13 @@ class CasesPerCountryFragment : Fragment() {
 
         val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
         val statusObserver = Observer<Boolean> { busy ->
-            if(busy)
+            if (busy) {
+                progressBar.animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
                 progressBar.visibility = View.VISIBLE
-            else
+            } else {
+                progressBar.animation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
                 progressBar.visibility = View.GONE
+            }
         }
 
         viewModel.data.observe(viewLifecycleOwner, dataObserver)

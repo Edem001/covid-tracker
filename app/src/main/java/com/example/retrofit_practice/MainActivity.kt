@@ -20,7 +20,7 @@ import com.example.retrofit_practice.di.AppComponent
 import com.example.retrofit_practice.di.DaggerAppComponent
 import com.example.retrofit_practice.fragments.CasesPerCountryFragment
 import com.example.retrofit_practice.fragments.HistoryPerCountryFragment
-import com.example.retrofit_practice.fragments.VaccinatedFragment
+import com.example.retrofit_practice.fragments.VaccinatedPerCountryFragment
 import com.example.retrofit_practice.vm.MainActivityViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                                     fragmentManager.commit {
                                         replace(
                                             R.id.summary_fragment_container,
-                                            VaccinatedFragment::class.java,
+                                            VaccinatedPerCountryFragment::class.java,
                                             bundle,
                                             "vaccinated"
                                         )

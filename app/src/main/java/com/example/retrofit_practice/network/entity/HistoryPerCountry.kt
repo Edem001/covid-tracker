@@ -1,6 +1,8 @@
-package com.example.retrofit_practice.network.entity.history
+package com.example.retrofit_practice.network.entity
 
-data class HistoryByCountry(
+import java.text.NumberFormat
+
+data class HistoryPerCountry(
     val continent: String?,
     val country: String?,
     val iso: Int?,
@@ -20,12 +22,12 @@ data class HistoryByCountry(
         list.add("Country - $country")
         list.add("Capital city - $capital_city")
         list.add("Abbreviation - $abbreviation")
-        list.add("Population - $population")
+        list.add("Population - ${NumberFormat.getIntegerInstance().format(population)}")
         list.add("\n\n")
         list.add("Statistics by date:")
 
         dates.keys.forEach {
-            list.add("$it: ${dates[it]}")
+            list.add("$it: ${NumberFormat.getIntegerInstance().format(dates[it])}")
         }
 
         return list.filterNot { it.contains(Regex(" null$")) }

@@ -2,12 +2,10 @@ package com.example.retrofit_practice.vm
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.example.retrofit_practice.CovidService
+import com.example.retrofit_practice.network.CovidService
 import com.example.retrofit_practice.util.PreferencesWorker
 import kotlinx.coroutines.*
-import retrofit2.Retrofit
 import javax.inject.Inject
 
 class SummaryViewModel @Inject constructor(var worker: PreferencesWorker, var client: CovidService) : ViewModel() {

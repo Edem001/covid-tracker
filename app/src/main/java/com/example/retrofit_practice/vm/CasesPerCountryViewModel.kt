@@ -2,8 +2,8 @@ package com.example.retrofit_practice.vm
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.retrofit_practice.CovidService
-import com.example.retrofit_practice.network.entity.cases.CasesPerCountry
+import com.example.retrofit_practice.network.CovidService
+import com.example.retrofit_practice.network.entity.CasesPerCountry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

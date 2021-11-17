@@ -8,10 +8,7 @@ import com.example.retrofit_practice.di.modules.CountryNamesModule
 import com.example.retrofit_practice.di.modules.HistoryModule
 import com.example.retrofit_practice.di.modules.NetworkModule
 import com.example.retrofit_practice.di.modules.StorageModule
-import com.example.retrofit_practice.fragments.CasesPerCountryFragment
-import com.example.retrofit_practice.fragments.HistoryPerCountryFragment
-import com.example.retrofit_practice.fragments.HistoryTabFragment
-import com.example.retrofit_practice.fragments.SummaryFragment
+import com.example.retrofit_practice.fragments.*
 import com.example.retrofit_practice.util.PreferencesWorker
 import com.example.retrofit_practice.vm.MainActivityViewModel
 import dagger.BindsInstance
@@ -33,6 +30,7 @@ interface AppComponent {
     fun inject(fragment: SummaryFragment)
     fun inject(fragment: CasesPerCountryFragment)
     fun inject(fragment: HistoryTabFragment)
+    fun inject(fragment: VaccinatedPerCountryFragment)
 }
 
 @Module
