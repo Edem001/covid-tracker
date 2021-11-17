@@ -31,15 +31,6 @@
         android:id="@+id/history_view_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:layout_below="@+id/history_tab_layout"/>
-
-    <ProgressBar
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:id="@+id/history_progress_bar"/>
-
 
 </RelativeLayout>

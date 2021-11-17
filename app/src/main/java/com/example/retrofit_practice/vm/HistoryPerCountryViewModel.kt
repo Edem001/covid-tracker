@@ -1,5 +1,6 @@
 package com.example.retrofit_practice.vm
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.retrofit_practice.CovidService
@@ -10,17 +11,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class HistoryPerCountryViewModel @Inject constructor(val client: CovidService) : ViewModel(), RetrofitUpdatable {
+class HistoryPerCountryViewModel @Inject constructor(val client: CovidService) : ViewModel() {
 
     val confirmedData = MutableLiveData<Map<String, HistoryByCountry>>()
     val deathsData = MutableLiveData<Map<String, HistoryByCountry>>()
     val busy = MutableLiveData(false)
 
-    override fun updateData(countryName: String) {
+    fun updateData(countryName: String, status: Status) {
         CoroutineScope(Dispatchers.IO).launch {
             busy.postValue(true)
-            confirmedData.postValue(client.historyByCountry(Status.Confirmed.value, countryName))
-            deathsData.postValue(client.historyByCountry(Status.Deaths.value, countryName))
+            if (status == Status.Confirmed)
+                confirmedData.postValue(client.historyByCountry(status.value, countryName))
+            else
+                deathsData.postValue(client.historyByCountry(status.value, countryName))
             busy.postValue(false)
         }
     }

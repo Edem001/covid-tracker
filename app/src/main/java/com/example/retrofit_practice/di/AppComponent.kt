@@ -10,6 +10,7 @@ import com.example.retrofit_practice.di.modules.NetworkModule
 import com.example.retrofit_practice.di.modules.StorageModule
 import com.example.retrofit_practice.fragments.CasesPerCountryFragment
 import com.example.retrofit_practice.fragments.HistoryPerCountryFragment
+import com.example.retrofit_practice.fragments.HistoryTabFragment
 import com.example.retrofit_practice.fragments.SummaryFragment
 import com.example.retrofit_practice.util.PreferencesWorker
 import com.example.retrofit_practice.vm.MainActivityViewModel
@@ -31,7 +32,7 @@ interface AppComponent {
     fun inject(activity: MainActivity)
     fun inject(fragment: SummaryFragment)
     fun inject(fragment: CasesPerCountryFragment)
-    fun inject(fragment: HistoryPerCountryFragment)
+    fun inject(fragment: HistoryTabFragment)
 }
 
 @Module

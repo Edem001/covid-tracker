@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.retrofit_practice.MainActivity
 import com.example.retrofit_practice.MyApplication
@@ -19,12 +20,7 @@ import javax.inject.Inject
 
 class HistoryPerCountryFragment : Fragment() {
 
-    @Inject
-    lateinit var viewModel: HistoryPerCountryViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        (activity?.application as MyApplication).appComponent.inject(this)
-
         super.onCreate(savedInstanceState)
         (activity as MainActivity).hideNavigation()
     }
@@ -35,12 +31,14 @@ class HistoryPerCountryFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_history, container, false)
 
+        val textView = view.findViewById<TextView>(R.id.history_tv_country).apply {
+            text = arguments?.getString("country") ?: ""
+        }
         val viewPager = view.findViewById<ViewPager2>(R.id.history_view_pager)
-        val viewPagerAdapter = HistoryViewPagerAdapter(parentFragmentManager, lifecycle, viewModel.confirmedData.value!!, viewModel.deathsData.value!!)
+        val viewPagerAdapter = HistoryViewPagerAdapter(parentFragmentManager, lifecycle, arguments)
         viewPager.adapter = viewPagerAdapter
         viewPager.setPageTransformer(DepthPageTransformer())
         viewPager.offscreenPageLimit = 1
-        Log.d("Debug", "${viewPager.currentItem}")
 
         val tabLayout = view.findViewById<TabLayout>(R.id.history_tab_layout)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->

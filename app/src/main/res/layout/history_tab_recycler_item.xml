@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/history_recycler_item_region_name"
         android:layout_marginHorizontal="10dp"
-        android:background="@drawable/item_gray_background"
+        android:background="@drawable/material_surface_rounded_background"
         android:elevation="6dp"
         android:padding="10dp"
         android:textSize="14sp" />
