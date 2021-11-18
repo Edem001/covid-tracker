@@ -48,7 +48,6 @@ class SummaryFragment : Fragment() {
         summaryViewModel.infected.observe(viewLifecycleOwner, updateInfected)
         summaryViewModel.deaths.observe(viewLifecycleOwner, updateDeaths)
 
-
         return view
     }
 

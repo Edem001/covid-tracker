@@ -22,7 +22,7 @@ data class HistoryPerCountry(
     override fun toString(): String {
         val list = ArrayList<String>()
         val format = SimpleDateFormat("yyyy-MM-dd")
-        val localFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
+        val localFormat = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault())
 
         list.add("Continent - $continent")
         list.add("Country - $country")

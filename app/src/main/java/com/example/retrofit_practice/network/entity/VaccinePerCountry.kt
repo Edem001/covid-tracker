@@ -38,7 +38,7 @@ data class VaccinePerCountry(
         val dataList = ArrayList<String>()
         val format = SimpleDateFormat("yyyy/MM/dd HH:mm:ss+SS")
         val localFormat = DateFormat.getDateTimeInstance(
-            DateFormat.MEDIUM,
+            DateFormat.SHORT,
             DateFormat.MEDIUM,
             Locale.getDefault()
         )

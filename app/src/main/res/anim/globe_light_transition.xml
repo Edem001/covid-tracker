@@ -1,27 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:repeatMode="restart">
+<set xmlns:android="http://schemas.android.com/apk/res/android" android:repeatMode="restart">
     <translate
-        android:fromXDelta="45%"
-        android:toXDelta="65%"
+        android:fromYDelta="48%"
+        android:toYDelta="52%"
         android:duration="1000"/>
 
     <translate
-        android:fromXDelta="65%"
-        android:toXDelta="50%"
-        android:fromYDelta="50%"
-        android:toYDelta="65%"
-        android:duration="1000"/>
-
-    <translate
-        android:fromYDelta="65%"
-        android:toYDelta="45%"
-        android:duration="1000"/>
-
-    <translate
-        android:fromXDelta="50%"
-        android:fromYDelta="45%"
-        android:toXDelta="45%"
-        android:toYDelta="50%"
+        android:fromYDelta="52%"
+        android:toYDelta="48%"
         android:duration="1000"/>
 </set>
