@@ -3,7 +3,10 @@ package com.example.retrofit_practice.network
 import com.example.retrofit_practice.network.entity.CasesPerCountry
 import com.example.retrofit_practice.network.entity.HistoryPerCountry
 import com.example.retrofit_practice.network.entity.VaccinePerCountry
+import okhttp3.CacheControl
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface CovidService{
@@ -44,7 +47,8 @@ interface CovidService{
         @Query("status") status: String,
         @Query("country") country: String? = null,
         @Query("ab") abbreviation: String? = null,
-        @Query("continent") continent: String? = null
+        @Query("continent") continent: String? = null,
+        @Header("Cache-Control") cacheControl:String =  "public, max-age=${60*60*6}"
     ): Map<String, HistoryPerCountry>
 
     /**
@@ -58,6 +62,7 @@ interface CovidService{
     suspend fun vaccineByCountry(
         @Query("country") country: String? = null,
         @Query("ab") abbreviation: String? = null,
-        @Query("continent") continent: String? = null
+        @Query("continent") continent: String? = null,
+        @Header("Cache-Control") cacheControl:String =  "public, max-age=${60*60*6}"
     ): Map<String, VaccinePerCountry>
 }

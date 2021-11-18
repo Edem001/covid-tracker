@@ -35,7 +35,7 @@ class HistoryPerCountryFragment : Fragment() {
             text = arguments?.getString("country") ?: ""
         }
         val viewPager = view.findViewById<ViewPager2>(R.id.history_view_pager)
-        val viewPagerAdapter = HistoryViewPagerAdapter(parentFragmentManager, lifecycle, arguments)
+        val viewPagerAdapter = HistoryViewPagerAdapter(parentFragmentManager, viewLifecycleOwner.lifecycle, arguments)
         viewPager.adapter = viewPagerAdapter
         viewPager.setPageTransformer(DepthPageTransformer())
         viewPager.offscreenPageLimit = 1
