@@ -1,7 +1,11 @@
 package com.example.retrofit_practice.network.entity
 
 import com.google.gson.annotations.SerializedName
+import java.text.DateFormat
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 data class VaccinePerCountry(
     @SerializedName("people_vaccinated")
@@ -32,15 +36,46 @@ data class VaccinePerCountry(
 
     override fun toString(): String {
         val dataList = ArrayList<String>()
+        val format = SimpleDateFormat("yyyy/MM/dd HH:mm:ss+SS")
+        val localFormat = DateFormat.getDateTimeInstance(
+            DateFormat.MEDIUM,
+            DateFormat.MEDIUM,
+            Locale.getDefault()
+        )
 
         dataList.add("Abbreviation: $abbreviation")
         dataList.add("Continent: $continent")
-        dataList.add("Population: ${NumberFormat.getIntegerInstance().format(population)}")
+        dataList.add(
+            "Population: ${
+                if (population == null) null else NumberFormat.getIntegerInstance()
+                    .format(population)
+            }"
+        )
 
-        dataList.add("People vaccinated: ${NumberFormat.getIntegerInstance().format(peopleVaccinated)}")
-        dataList.add("People partially vaccinated: ${NumberFormat.getIntegerInstance().format(peoplePartiallyVaccinated)}")
-        dataList.add("Administered: ${NumberFormat.getIntegerInstance().format(administered)}")
-        dataList.add("Last update: $updated")
+        dataList.add(
+            "People vaccinated: ${
+                if (peopleVaccinated == null) null else NumberFormat.getIntegerInstance()
+                    .format(peopleVaccinated)
+            }"
+        )
+        dataList.add(
+            "People partially vaccinated: ${
+                if (peoplePartiallyVaccinated == null) null else NumberFormat.getIntegerInstance()
+                    .format(peoplePartiallyVaccinated)
+            }"
+        )
+        dataList.add(
+            "Administered: ${
+                if (administered == null) null else NumberFormat.getIntegerInstance()
+                    .format(administered)
+            }"
+        )
+        dataList.add(
+            "Last update: ${
+                if (updated == null) null else
+                    localFormat.format(format.parse(updated)!!)
+            }"
+        )
 
         return dataList.filterNot { it.contains(Regex(" null$")) }
             .joinToString(separator = System.lineSeparator())

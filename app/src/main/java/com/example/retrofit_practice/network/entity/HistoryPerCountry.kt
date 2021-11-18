@@ -1,6 +1,10 @@
 package com.example.retrofit_practice.network.entity
 
+import java.text.DateFormat
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 data class HistoryPerCountry(
     val continent: String?,
@@ -17,17 +21,20 @@ data class HistoryPerCountry(
 ) {
     override fun toString(): String {
         val list = ArrayList<String>()
+        val format = SimpleDateFormat("yyyy-MM-dd")
+        val localFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
 
         list.add("Continent - $continent")
         list.add("Country - $country")
         list.add("Capital city - $capital_city")
         list.add("Abbreviation - $abbreviation")
-        list.add("Population - ${NumberFormat.getIntegerInstance().format(population)}")
+        list.add("Population - ${if (population == null) null else NumberFormat.getIntegerInstance().format(population)}")
         list.add("\n\n")
         list.add("Statistics by date:")
 
         dates.keys.forEach {
-            list.add("$it: ${NumberFormat.getIntegerInstance().format(dates[it])}")
+            val date = format.parse(it)
+            list.add("${localFormat.format(date!!) ?: it}: ${NumberFormat.getIntegerInstance().format(dates[it])}")
         }
 
         return list.filterNot { it.contains(Regex(" null$")) }
