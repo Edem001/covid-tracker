@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -60,6 +61,12 @@ class HistoryTabFragment : Fragment() {
         } else {
             tabViewModel.deathsData.observe(viewLifecycleOwner, dataObserver)
         }
+
+        tabViewModel.timeout.observe(viewLifecycleOwner, {
+            if (it){
+                Toast.makeText(requireContext(), "Error: connection timeout", Toast.LENGTH_SHORT).show()
+            }
+        })
 
         tabViewModel.updateData(bundle?.getString("country") ?: "Ukraine", status)
 

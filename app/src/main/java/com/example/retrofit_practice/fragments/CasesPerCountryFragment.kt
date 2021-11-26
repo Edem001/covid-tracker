@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -59,6 +60,12 @@ class CasesPerCountryFragment : Fragment() {
             }
         }
 
+
+        viewModel.timeout.observe(viewLifecycleOwner, {
+            if (it){
+                Toast.makeText(requireContext(), "Error: connection timeout", Toast.LENGTH_SHORT).show()
+            }
+        })
         viewModel.data.observe(viewLifecycleOwner, dataObserver)
         viewModel.busy.observe(viewLifecycleOwner, statusObserver)
         viewModel.updateData(countryName)

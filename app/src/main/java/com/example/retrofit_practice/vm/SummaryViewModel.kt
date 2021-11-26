@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.retrofit_practice.network.CovidService
 import com.example.retrofit_practice.util.PreferencesWorker
 import kotlinx.coroutines.*
+import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 class SummaryViewModel @Inject constructor(var worker: PreferencesWorker, var client: CovidService) : ViewModel() {
@@ -29,12 +30,14 @@ class SummaryViewModel @Inject constructor(var worker: PreferencesWorker, var cl
 
     val updaterJob = CoroutineScope(Dispatchers.IO).launch {
         repeat(Int.MAX_VALUE) {
-            val summary = client.casesByCountry(country = "Global")["All"]
+            try {
+                val summary = client.casesByCountry(country = "Global")["All"]
 
-            updateInfected(summary?.confirmed)
-            updateDeaths(summary?.deaths)
+                updateInfected(summary?.confirmed)
+                updateDeaths(summary?.deaths)
 
-            delay(UPDATE_DELAY)
+                delay(UPDATE_DELAY)
+            }catch (e: SocketTimeoutException){}
         }
     }
 

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.retrofit_practice.MainActivity
 import com.example.retrofit_practice.MyApplication
@@ -64,6 +65,12 @@ class VaccinatedPerCountryFragment : Fragment() {
             }
         }
 
+
+        vaccinatedViewModel.timeout.observe(viewLifecycleOwner, {
+            if (it){
+                Toast.makeText(requireContext(), "Error: connection timeout", Toast.LENGTH_SHORT).show()
+            }
+        })
         vaccinatedViewModel.busy.observe(viewLifecycleOwner, busyObserver)
         vaccinatedViewModel.vaccinatedData.observe(viewLifecycleOwner, dataObserver)
         vaccinatedViewModel.updateData(arguments?.getString("country") ?: "Ukraine")
